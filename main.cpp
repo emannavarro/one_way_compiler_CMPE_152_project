@@ -8,6 +8,7 @@
 #include <regex>
 #include <iomanip> // Include for std::hex manipulator
 #include <cstdlib> // Include for srand() and rand()
+#include <random>
 
 /**
  * @brief One way compiler for a hash function
@@ -55,6 +56,15 @@ int main(int argc, char* argv[])
         std::cerr << "Usage: " << argv[0] << " <filename>" << std::endl;
         return 1; // Exit with error
     }
+    std::istringstream iss(argv[1]);
+    unsigned int seed = 123;
+
+    /*
+    if (!(iss >> seed)) {
+        std::cerr << "Invalid seed: " << argv[1] << std::endl;
+        return 1; // Exit with error
+    }
+    */
 
     std::unordered_map<std::string, int> myMap;
     int code_book_size = 26178;
@@ -62,6 +72,9 @@ int main(int argc, char* argv[])
     for (int i = 0; i < code_book_size; ++i) {
         code_bk[i] = i + 1;
     }
+    std::mt19937 gen(seed);
+    std::shuffle(code_bk, code_bk+code_book_size, gen);
+
     
     load_dict_code_book(argv[1], myMap, code_bk, code_book_size);
     std::string input;
