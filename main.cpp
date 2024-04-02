@@ -5,6 +5,9 @@
 #include <string>
 #include <cctype>
 #include <unordered_map>
+#include <regex>
+#include <iomanip> // Include for std::hex manipulator
+#include <cstdlib> // Include for srand() and rand()
 
 /**
  * @brief One way compiler for a hash function
@@ -61,8 +64,38 @@ int main(int argc, char* argv[])
     }
     
     load_dict_code_book(argv[1], myMap, code_bk, code_book_size);
-    
-    std::cout << "Size of the unordered_map: " << myMap.size() << std::endl;
+    std::string input;
+    std::regex alphabetic("[a-z]+"); // Regular expression to match alphabetic characters
+
+    while (true) {
+        std::cout << "Enter a sentence (words separated by white spaces, only lower alphabetic characters allowed, no punctuation or apostrophes and enter *end* to exit program):\n";
+        std::getline(std::cin, input); // Read the input line by line
+
+        if (input == "*end*") {
+            std::cout << "Exiting the program." << std::endl;
+            break; // Exit the while loop
+        }
+
+        // Use istringstream to split the input line into words
+        std::istringstream iss(input);
+        std::string word;
+        std::ostringstream oss;
+        while (iss >> word) {
+            // Check if the current word contains only alphabetic characters
+            if (std::regex_match(word, alphabetic)) {
+                std::cout << "Word accepted: " << word << std::endl;
+                 if (myMap.count(word) > 0) {
+                   //std::cout<<  std::hex <<myMap[word] << std::endl;
+                   oss << std::hex << myMap[word]; // Set output to hexadecimal and append the value
+                   //oss << std::hex;
+                 }
+            } else {
+                std::cout << "Invalid word: " << word << ". Please enter words containing only alphabetic characters (a-z and A-Z)." << std::endl;
+            }
+        }
+        std::string concatenatedHex = oss.str();
+        std::cout << "Your hash value is as follows: " << concatenatedHex << std::endl;
+    }
      
     return 0;
 }
