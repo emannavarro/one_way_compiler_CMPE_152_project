@@ -15,9 +15,7 @@ This C++ program acts as a one-way compiler for a hash function.
 
 ## Usage:
 
-Compile the program and execute it with a filename as argument:
-Compile command line
-g++ -std=c++11 -O3 main.cpp -o main          
+Compile the program and execute it with a filename as argument: g++ -std=c++11 -O3 main.cpp -o main          
 
 ```bash
 ./main dictionar_file.txt
