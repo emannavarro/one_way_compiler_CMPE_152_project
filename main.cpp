@@ -78,7 +78,7 @@ int main(int argc, char* argv[])
     
     load_dict_code_book(argv[1], myMap, code_bk, code_book_size);
     std::string input;
-    std::regex alphabetic("[a-z]+"); // Regular expression to match alphabetic characters
+    std::regex alphabetic("[a-zA-Z]+"); // Regular expression to match alphabetic characters
 
     while (true) {
         std::cout << "Enter a sentence (words separated by white spaces, only lower alphabetic characters allowed, no punctuation or apostrophes and enter *end* to exit program):\n";
@@ -95,15 +95,16 @@ int main(int argc, char* argv[])
         std::ostringstream oss;
         while (iss >> word) {
             // Check if the current word contains only alphabetic characters
-            if (std::regex_match(word, alphabetic)) {
-                std::cout << "Word accepted: " << word << std::endl;
-                 if (myMap.count(word) > 0) {
-                   //std::cout<<  std::hex <<myMap[word] << std::endl;
-                   oss << std::hex << myMap[word]; // Set output to hexadecimal and append the value
-                   //oss << std::hex;
-                 }
+             std::string lowered_word = to_lowercase(word);
+            if (std::regex_match(word, alphabetic) &&  myMap.count(lowered_word) > 0) {
+                
+               
+                //if (myMap.count(lowered_word) > 0) {
+                   std::cout << "Word accepted: " << word << std::endl;
+                   oss << std::hex << myMap[lowered_word]; // Set output to hexadecimal and append the value
+                // }
             } else {
-                std::cout << "Invalid word: " << word << ". Please enter words containing only alphabetic characters (a-z and A-Z)." << std::endl;
+                std::cout << "Invalid word: " << word << ". Enter only Oxford Dictionary words with alphabetic characters (a-z and A-Z)." << std::endl;
             }
         }
         std::string concatenatedHex = oss.str();
