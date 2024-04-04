@@ -93,6 +93,7 @@ int main(int argc, char* argv[])
         std::istringstream iss(input);
         std::string word;
         std::ostringstream oss;
+        bool is_valid_sentence = true;
         while (iss >> word) {
             // Check if the current word contains only alphabetic characters
              std::string lowered_word = to_lowercase(word);
@@ -105,10 +106,11 @@ int main(int argc, char* argv[])
                 // }
             } else {
                 std::cout << "Invalid word: " << word << ". Enter only Oxford Dictionary words with alphabetic characters (a-z and A-Z)." << std::endl;
+                is_valid_sentence = false; // checks if whole sentence is valid and will print hex value if the whole sentence is correct.
             }
         }
         std::string concatenatedHex = oss.str();
-        if (concatenatedHex.length())
+        if (concatenatedHex.length() && is_valid_sentence)
         std::cout << "Your hash value is as follows: " << concatenatedHex << std::endl;
     }
      
