@@ -81,7 +81,7 @@ int main(int argc, char* argv[])
     std::regex alphabetic("[a-zA-Z]+"); // Regular expression to match alphabetic characters
 
     while (true) {
-        std::cout << "Enter a sentence (words separated by white spaces, only lower alphabetic characters allowed, no punctuation or apostrophes and enter *end* to exit program):\n";
+        std::cout << "Enter a sentence (words separated by white spaces, only lower alphabetic characters allowed,\nno punctuation or apostrophes and enter *end* to exit program):\n";
         std::getline(std::cin, input); // Read the input line by line
 
         if (input == "*end*") {
@@ -108,6 +108,7 @@ int main(int argc, char* argv[])
             }
         }
         std::string concatenatedHex = oss.str();
+        if (concatenatedHex.length())
         std::cout << "Your hash value is as follows: " << concatenatedHex << std::endl;
     }
      
