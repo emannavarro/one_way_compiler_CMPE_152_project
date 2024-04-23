@@ -18,8 +18,7 @@
  * @param code_book_array Array representing the relationship between integers and words.
  * @param array_size Size of the code_book_array.
  */
-void load_dict_code_book(const std::string& filename, std::unordered_map<std::string,
-                        int>& myMap, int code_book_array[], int array_size);
+void load_dict_code_book(const std::string& filename, std::unordered_map<std::string, int>& myMap, int code_book_array[], int array_size);
 
 /**
  * @brief Checks if a given string contains only alphabetic characters.
