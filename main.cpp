@@ -118,7 +118,8 @@ int main(int argc, char* argv[])
     return 0;
 }
 
-void load_dict_code_book(const std::string& filename, std::unordered_map<std::string, int>& myMap, int code_book_array[], int array_size) 
+void load_dict_code_book(const std::string& filename, std::unordered_map<std::string,
+                         int>& myMap, int code_book_array[], int array_size) 
 {
     // This function loads the dictionary into an unordered_map used to hash words from input
     std::ifstream file(filename);
@@ -137,7 +138,8 @@ void load_dict_code_book(const std::string& filename, std::unordered_map<std::st
         std::string word;
         if (iss >> word) {
             if (string_is_alpha(word)) {
-                if (myMap.count(to_lowercase(word)) == 0) { // Check for duplicate entries and avoid adding duplicates
+                if (myMap.count(to_lowercase(word)) == 0) { // Check for duplicate
+                                                            // entries and avoid adding duplicates
                     myMap[to_lowercase(word)] = code_book_array[counter];
                     ++counter;
                 }
