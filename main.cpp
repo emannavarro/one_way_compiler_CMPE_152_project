@@ -68,7 +68,8 @@ int main(int argc, char* argv[])
 
     std::unordered_map<std::string, int> myMap;
     int code_book_size = 26178;
-    int code_bk[code_book_size];  // Initialize the code book or the relationship between an integer and a word
+    int code_bk[code_book_size];  // Initialize the code book or the relationship
+                                  // between an integer and a word
     for (int i = 0; i < code_book_size; ++i) {
         code_bk[i] = i + 1;
     }
@@ -81,7 +82,8 @@ int main(int argc, char* argv[])
     std::regex alphabetic("[a-zA-Z]+"); // Regular expression to match alphabetic characters
 
     while (true) {
-        std::cout << "Enter a sentence (words separated by white spaces, only lower alphabetic characters allowed,\nno punctuation or apostrophes and enter *end* to exit program):\n";
+        std::cout << "Enter a sentence (words separated by white spaces, only lower alphabetic
+            characters allowed,\nno punctuation or apostrophes and enter *end* to exit program):\n";
         std::getline(std::cin, input); // Read the input line by line
 
         if (input == "*end*") {
