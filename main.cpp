@@ -82,8 +82,7 @@ int main(int argc, char* argv[])
     std::regex alphabetic("[a-zA-Z]+"); // Regular expression to match alphabetic characters
 
     while (true) {
-        std::cout << "Enter a sentence (words separated by white spaces, only lower alphabetic
-            characters allowed,\nno punctuation or apostrophes and enter *end* to exit program):\n";
+        std::cout << "Enter a sentence (words separated by white spaces, only lower alphabetic characters allowed,\nno punctuation or apostrophes and enter *end* to exit program):\n";
         std::getline(std::cin, input); // Read the input line by line
 
         if (input == "*end*") {
@@ -104,14 +103,11 @@ int main(int argc, char* argv[])
                
                 //if (myMap.count(lowered_word) > 0) {
                    std::cout << "Word accepted: " << word << std::endl;
-                   oss << std::hex << myMap[lowered_word]; // Set output to hexadecimal
-                                                           // and append the value
+                   oss << std::hex << myMap[lowered_word]; // Set output to hexadecimal and append the value
                 // }
             } else {
-                std::cout << "Invalid word: " << word << ". Enter only Oxford Dictionary words
-                                        with alphabetic characters (a-z and A-Z)." << std::endl;
-                is_valid_sentence = false; // checks if whole sentence is valid and will
-                                           // print hex value if the whole sentence is correct.
+                std::cout << "Invalid word: " << word << ". Enter only Oxford Dictionary words with alphabetic characters (a-z and A-Z)." << std::endl;
+                is_valid_sentence = false; // checks if whole sentence is valid and will print hex value if the whole sentence is correct.
             }
         }
         std::string concatenatedHex = oss.str();
